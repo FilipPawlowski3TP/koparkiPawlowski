@@ -1,0 +1,109 @@
+---
+import Base from '../../layouts/Base.astro';
+import SectionHead from '../../components/SectionHead.astro';
+import ServiceDiagram from '../../components/ServiceDiagram.astro';
+import Faq from '../../components/Faq.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { site } from '../../site.config.mjs';
+
+const faq = [
+  {
+    q: 'Czy wykonujecie wykopy pod przyłącza wodne i elektryczne?',
+    a: 'Tak, wykonujemy wykopy liniowe pod różnego rodzaju media — m.in. kanalizację, wodę i instalacje elektryczne. Sam montaż instalacji wykonuje zazwyczaj inny wykonawca — zakres ustalamy przed przyjazdem.'
+  },
+  {
+    q: 'Jak głęboko wykopiecie rów pod instalację?',
+    a: 'Głębokość zależy od rodzaju instalacji, warunków na działce i wymagań projektu. Podaj wymagane wymiary podczas rozmowy telefonicznej — potwierdzimy możliwości sprzętu.'
+  },
+  {
+    q: 'Czy możecie zasypać wykop po ułożeniu instalacji?',
+    a: 'Zasypanie wykopu można uwzględnić w zakresie zlecenia — powiedz o tym podczas ustaleń, abyśmy przyjechali z odpowiednim przygotowaniem.'
+  }
+];
+---
+
+<Base
+  title="Wykopy pod kanalizacje i instalacje Wrocław — wykopy liniowe | Koparki Pawłowski"
+  description="Wykopy pod kanalizację, wodę, prąd i inne instalacje minikoparką z operatorem. Wrocław i okolice. Wycena telefoniczna: 792 611 777."
+>
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow"><a href="/uslugi/">Usługi</a> / 02</p>
+      <h1>Wykopy pod kanalizacje i instalacje</h1>
+      <p class="lead">
+        Wykopy liniowe pod kanalizację, wodę, prąd i inne media — od posesji po miejsce
+        przyłączenia. Precyzyjnie i z minimalną ingerencją w teren. Wrocław i okolice.
+      </p>
+      <div class="cta-actions">
+        <a class="btn btn--primary" href={`tel:${site.phoneHref}`}>
+          <span class="btn__num" aria-hidden="true">☎</span> {site.phoneDisplay}
+        </a>
+        <a class="btn btn--ghost" href="/kontakt/">Wyślij zapytanie</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--deep">
+    <div class="container grid-2">
+      <div>
+        <SectionHead eyebrow="Zakres" title="Rodzaje wykopów liniowych" />
+        <ul>
+          <li>wykopy pod kanalizację sanitarną i przyłącza kanalizacyjne,</li>
+          <li>wykopy pod przyłącza wodne,</li>
+          <li>wykopy pod kable energetyczne i oświetlenie,</li>
+          <li>wykopy pod drenaże i odwodnienia,</li>
+          <li>przygotowanie wykopu pod inne instalacje przebiegające w gruncie.</li>
+        </ul>
+        <p>
+          Przy wykopach liniowych liczy się nie tylko głębokość, ale też szerokość roboczą —
+          musi zmieścić instalację i zapewnić bezpieczne wykonanie prac. Podaj parametry z
+          projektu lub wytycznych instalatora.
+        </p>
+      </div>
+      <ServiceDiagram variant="instalacje" caption="Wykop liniowy z rurą — schemat" />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container grid-2">
+      <div>
+        <SectionHead eyebrow="Przygotowanie" title="Co ustalić przed rozpoczęciem prac" />
+        <p>Bezpieczny wykop zaczyna się od dobrych ustaleń. Przed przyjazdem warto wiedzieć:</p>
+        <ul>
+          <li>gdzie dokładnie biegnie instalacja (przebieg z projektu lub wytycznych),</li>
+          <li>jakie media istnieją już na działce i gdzie się znajdują,</li>
+          <li>na jakiej głębokości ma przebiegać instalacja,</li>
+          <li>co dzieje się z urobkiem i czy wykop ma zostać zasypany po pracach instalacyjnych.</li>
+        </ul>
+        <p>
+          Jeśli masz wątpliwości co do przebiegu mediów, zgłoś to przed rozpoczęciem prac —
+          od tego zależy bezpieczeństwo i przebieg zlecenia.
+        </p>
+      </div>
+      <div>
+        <SectionHead eyebrow="Po pracach" title="Zasypanie i uporządkowanie" />
+        <p>
+          Po ułożeniu instalacji wykop można zasypać i przywrócić teren do stanu używalności.
+          Zakres prac po instalatorze (zasypanie, wyrównanie, zagęszczenie) ustalamy przed
+          realizacją — dzięki temu wiesz, czego się spodziewać.
+        </p>
+        <p>
+          Potrzebujesz również korytowania pod kostkę lub niwelacji terenu? Te prace również
+          wykonujemy — <a href="/uslugi/">zobacz pełną ofertę</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--deep">
+    <div class="container">
+      <SectionHead eyebrow="Pytania i odpowiedzi" title="Instalacje — pytania" />
+      <Faq items={faq} />
+    </div>
+  </section>
+
+  <CtaBand
+    title="Potrzebujesz wykopu pod instalację?"
+    text="Zadzwoń i podaj przebieg oraz wymiary wykopu. Ustalimy zakres i termin realizacji."
+  />
+</Base>

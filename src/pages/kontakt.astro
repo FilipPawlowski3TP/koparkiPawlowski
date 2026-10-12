@@ -1,0 +1,82 @@
+---
+import Base from '../layouts/Base.astro';
+import SectionHead from '../components/SectionHead.astro';
+import ContactForm from '../components/ContactForm.astro';
+import { site } from '../site.config.mjs';
+---
+
+<Base
+  title="Kontakt | Koparki Pawłowski — usługi minikoparką Wrocław"
+  description="Skontaktuj się z Koparki Pawłowski. Telefon: 792 611 777, e-mail: piotrpawlowski1979@gmail.com. Usługi minikoparką — Wrocław i okolice."
+>
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow">Kontakt</p>
+      <h1>Skontaktuj się z nami</h1>
+      <p class="lead">
+        Najszybciej załatwisz sprawę telefonicznie — opisz, co jest do zrobienia, a od razu
+        ustalimy dalsze kroki.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--deep">
+    <div class="container grid-2 grid-2--wide-left">
+      <div>
+        <SectionHead eyebrow="Telefon i e-mail" title="Dane kontaktowe" />
+        <p class="contact-phone">
+          Telefon:<br />
+          <a class="phone-link" href={`tel:${site.phoneHref}`}>{site.phoneDisplay}</a>
+        </p>
+        <p>
+          E-mail:<br />
+          <a href={`mailto:${site.email}`}>{site.email}</a>
+        </p>
+
+        <h3>Godziny otwarcia</h3>
+        <table class="hours-table">
+          <thead>
+            <tr><th>Dzień</th><th>Godziny</th></tr>
+          </thead>
+          <tbody>
+            {
+              site.hours.map((h) => (
+                <tr>
+                  <td>{h.days}</td>
+                  <td>{h.hours}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+
+        <h3>Co przygotować do rozmowy</h3>
+        <ul>
+          <li>lokalizację prac (miejscowość, adres lub dojazd na działkę),</li>
+          <li>rodzaj prac i przybliżone wymiary (głębokość, długość, powierzchnia),</li>
+          <li>preferowany termin realizacji,</li>
+          <li>informacje o terenie, jeśli są znane (np. wąski wjazd, skarpa, istniejące instalacje).</li>
+        </ul>
+      </div>
+
+      <div>
+        <SectionHead eyebrow="Formularz" title="Wyślij zapytanie" />
+        <ContactForm />
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .contact-phone {
+    margin-bottom: var(--sp-4);
+  }
+
+  .contact-phone .phone-link {
+    font-size: var(--step-3);
+  }
+
+  h3 {
+    margin-top: var(--sp-5);
+  }
+</style>

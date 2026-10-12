@@ -1,0 +1,8 @@
+# Przekierowania po migracji ze starej strony (Google Sites) — zachowanie ciągłości SEO.
+# Stary adres strony głównej:
+/strona-główna  /  301
+/strona-glowna  /  301
+/strona-g%C5%82%C3%B3wna  /  301
+
+# Stare zasoby Google Sites (jeśli były indeksowane) kierujemy na stronę główną:
+/system/*  /  301

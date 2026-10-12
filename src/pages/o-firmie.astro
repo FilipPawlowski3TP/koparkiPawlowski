@@ -1,0 +1,70 @@
+---
+import Base from '../layouts/Base.astro';
+import SectionHead from '../components/SectionHead.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { site } from '../site.config.mjs';
+---
+
+<Base
+  title="O firmie — Koparki Pawłowski | Usługi minikoparką Wrocław"
+  description="Koparki Pawłowski — usługi minikoparką do 2 ton z operatorem we Wrocławiu i okolicach. Poznaj sposób, w jaki realizujemy roboty ziemne."
+>
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow">O firmie</p>
+      <h1>Koparki Pawłowski</h1>
+      <p class="lead">
+        Wykonujemy roboty ziemne minikoparką do 2 ton wraz z operatorem. Działamy we Wrocławiu
+        i okolicach, realizując prace dla osób prywatnych i inwestorów.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--deep">
+    <div class="container grid-2">
+      <div>
+        <SectionHead eyebrow="Profil" title="Czym się zajmujemy" />
+        <p>
+          Nasza specjalność to <a href="/uslugi/">prace ziemne minikoparką</a>: kopanie
+          fundamentów, wykopy pod kanalizacje i instalacje, korytowanie oraz równanie terenu.
+          Realizujemy również inne prace ziemne — po wcześniejszym ustaleniu zakresu.
+        </p>
+        <p>
+          Pracujemy minikoparką do 2 ton — kompaktowym sprzętem, który sprawdza się na
+          ciasnych działkach, w ogrodach i w pobliżu zabudowy. Każde zlecenie wykonujemy
+          z operatorem.
+        </p>
+        <p>
+          Kontakt z nami jest bezpośredni: dzwonisz, ustalasz zakres i termin, a następnie
+          oczekujesz na wykonanie pracy. Bez pośredników i bez zbędnych formalności.
+        </p>
+      </div>
+      <div>
+        <SectionHead eyebrow="Zasady" title="Jak podchodzimy do zleceń" />
+        <ul>
+          <li>
+            <strong>Ustalenia przed pracą.</strong> Zakres, wymiary i termin potwierdzamy przed
+            przyjazdem — wiesz, czego się spodziewać.
+          </li>
+          <li>
+            <strong>Rzetelna wycena.</strong> Koszt zależy od realnego zakresu prac, gruntu i
+            czasu potrzebnego na realizację. Wyceniamy po rozmowie, na podstawie faktów.
+          </li>
+          <li>
+            <strong>Bieżący kontakt.</strong> Jeśli warunki na działce odbiegają od ustaleń,
+            informujemy o tym od razu i wspólnie ustalamy dalsze działanie.
+          </li>
+          <li>
+            <strong>Jasne godziny.</strong> Telefon odbieramy od poniedziałku do piątku w
+            godzinach 7:30–20:30 oraz w soboty 8:00–18:30.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    title="Porozmawiajmy o Twojej działce"
+    text="Opisz zakres prac telefonicznie — odpowiemy na pytania i ustalimy termin."
+  />
+</Base>

@@ -1,0 +1,56 @@
+---
+import { site } from '../site.config.mjs';
+
+const nav = [
+  { href: '/uslugi/', label: 'Usługi' },
+  { href: '/obszar-dzialania/', label: 'Obszar działania' },
+  { href: '/o-firmie/', label: 'O firmie' },
+  { href: '/kontakt/', label: 'Kontakt' },
+  { href: '/polityka-prywatnosci/', label: 'Polityka prywatności' }
+];
+
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-cell">
+        <span class="k">Firma</span>
+        <p><strong>{site.name}</strong></p>
+        <p>{site.tagline}</p>
+        <p>{site.area}</p>
+      </div>
+      <div class="footer-cell">
+        <span class="k">Kontakt</span>
+        <p>
+          Telefon:<br />
+          <a href={`tel:${site.phoneHref}`}>{site.phoneDisplay}</a>
+        </p>
+        <p>
+          E-mail:<br />
+          <a href={`mailto:${site.email}`}>{site.email}</a>
+        </p>
+      </div>
+      <div class="footer-cell">
+        <span class="k">Godziny otwarcia</span>
+        <p>{site.hours[0].days}: {site.hours[0].hours}</p>
+        <p>{site.hours[1].days}: {site.hours[1].hours}</p>
+        <p>{site.hours[2].days}: {site.hours[2].hours}</p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <ul class="footer-nav footer-nav--inline">
+        {
+          nav.map((item) => (
+            <li>
+              <a href={item.href}>{item.label}</a>
+            </li>
+          ))
+        }
+      </ul>
+      <span>© {year} {site.name}</span>
+    </div>
+  </div>
+</footer>

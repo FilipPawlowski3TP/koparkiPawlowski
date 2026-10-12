@@ -1,0 +1,103 @@
+---
+import Base from '../../layouts/Base.astro';
+import SectionHead from '../../components/SectionHead.astro';
+import ServiceDiagram from '../../components/ServiceDiagram.astro';
+import Faq from '../../components/Faq.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { site } from '../../site.config.mjs';
+
+const faq = [
+  {
+    q: 'Na jaką głębokość wykonujecie korytowanie?',
+    a: 'Głębokość koryta zależy od konstrukcji nawierzchni — typowo jest to kilkanaście centymetrów pod kostkę, więcej przy większych obciążeniach. Wymiary podaj na podstawie wytycznych projektanta lub brukarza.'
+  },
+  {
+    q: 'Czy zajmujecie się również układaniem kostki?',
+    a: 'Nie — zajmujemy się stroną ziemną: korytowaniem i przygotowaniem podłoża. Układanie kostki wykonuje zazwyczaj ekipa brukarska; z takimi ekipami łatwo się skoordynować.'
+  },
+  {
+    q: 'Czy korytujecie również pod podjazdy i ścieżki?',
+    a: 'Tak. Korytowanie wykonujemy pod kostkę brukową, podjazdy, ścieżki, chodniki i inne nawierzchnie wymagające przygotowanego podłoża.'
+  }
+];
+---
+
+<Base
+  title="Korytowanie pod kostkę brukową Wrocław — przygotowanie podłoża | Koparki Pawłowski"
+  description="Korytowanie minikoparką pod kostkę brukową, podjazdy, ścieżki i chodniki. Wrocław i okolice. Wycena telefoniczna: 792 611 777."
+>
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow"><a href="/uslugi/">Usługi</a> / 03</p>
+      <h1>Korytowanie pod kostkę brukową</h1>
+      <p class="lead">
+        Przygotowanie podłoża pod kostkę, podjazdy, ścieżki i chodniki. Równe koryto o
+        ustalonej głębokości to fundament trwałej nawierzchni. Wrocław i okolice.
+      </p>
+      <div class="cta-actions">
+        <a class="btn btn--primary" href={`tel:${site.phoneHref}`}>
+          <span class="btn__num" aria-hidden="true">☎</span> {site.phoneDisplay}
+        </a>
+        <a class="btn btn--ghost" href="/kontakt/">Wyślij zapytanie</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--deep">
+    <div class="container grid-2">
+      <div>
+        <SectionHead eyebrow="Zakres" title="Co obejmuje korytowanie" />
+        <p>
+          Korytowanie to mechaniczne ściągnięcie warstwy gruntu na ustaloną głębokość, tak aby
+          powstało równe podłoże pod kolejne warstwy nawierzchni. W ramach zlecenia wykonujemy:
+        </p>
+        <ul>
+          <li>korytowanie pod kostkę brukową i płyty ażurowe,</li>
+          <li>korytowanie podjazdów, ścieżek, chodników i parkingów,</li>
+          <li>ściąganie wierzchniej warstwy gruntu i wyrównanie podłoża,</li>
+          <li>przygotowanie terenu pod dalsze prace brukarskie.</li>
+        </ul>
+      </div>
+      <ServiceDiagram variant="korytowanie" caption="Przekrój koryta pod nawierzchnię — schemat" />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container grid-2">
+      <div>
+        <SectionHead eyebrow="Przebieg" title="Jak wygląda realizacja" />
+        <ol>
+          <li><strong>Ustalenia</strong> — podajesz powierzchnię, lokalizację i wymaganą głębokość koryta.</li>
+          <li><strong>Wyznaczenie</strong> — wskazujesz obszar prac i poziom odniesienia (np. gotowy fragment nawierzchni).</li>
+          <li><strong>Korytowanie</strong> — ściągamy grunt na ustaloną głębokość i wyrównujemy podłoże.</li>
+          <li><strong>Przekazanie</strong> — teren jest gotowy na wejście ekipy brukarskiej.</li>
+        </ol>
+      </div>
+      <div>
+        <SectionHead eyebrow="Współpraca" title="Korytowanie a prace brukarskie" />
+        <p>
+          Korytowanie to pierwszy etap budowy nawierzchni. Kolejne warstwy — podsypka,
+          zagęszczenie i układanie kostki — wykonuje zazwyczaj ekipa brukarska. Jeśli masz już
+          wybranego brukarza, ustal z nim wymaganą głębokość koryta jeszcze przed naszym
+          przyjazdem.
+        </p>
+        <p>
+          Korytowanie często łączymy z <a href="/uslugi/niwelacja-terenu/">niwelacją terenu</a> —
+          obie usługi można zrealizować w jednym wyjeździe.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--deep">
+    <div class="container">
+      <SectionHead eyebrow="Pytania i odpowiedzi" title="Korytowanie — pytania" />
+      <Faq items={faq} />
+    </div>
+  </section>
+
+  <CtaBand
+    title="Układasz kostkę? Zaczniemy od koryta."
+    text="Zadzwoń i podaj powierzchnię oraz wymaganą głębokość. Ustalimy zakres i termin."
+  />
+</Base>

@@ -1,0 +1,238 @@
+---
+import { site } from '../site.config.mjs';
+
+const nav = [
+  { href: '/uslugi/', label: 'Usługi' },
+  { href: '/obszar-dzialania/', label: 'Obszar działania' },
+  { href: '/o-firmie/', label: 'O firmie' },
+  { href: '/kontakt/', label: 'Kontakt' }
+];
+
+const path = Astro.url.pathname;
+const isActive = (href: string) => path === href || path === href.slice(0, -1);
+---
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="brand" href="/">
+      <span class="brand__name">Koparki <strong>Pawłowski</strong></span>
+      <span class="brand__tag">usługi minikoparką · Wrocław</span>
+    </a>
+
+    <nav class="site-nav" id="site-nav" aria-label="Główna nawigacja">
+      <ul>
+        {
+          nav.map((item) => (
+            <li>
+              <a href={item.href} aria-current={isActive(item.href) ? 'page' : undefined}>
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <a class="btn btn--primary site-nav__call" href={`tel:${site.phoneHref}`}>
+        <span class="btn__num" aria-hidden="true">☎</span> {site.phoneDisplay}
+      </a>
+    </nav>
+
+    <button
+      class="nav-toggle"
+      id="nav-toggle"
+      aria-expanded="false"
+      aria-controls="site-nav"
+    >
+      <span class="visually-hidden">Menu</span>
+      <span class="nav-toggle__bars" aria-hidden="true"></span>
+    </button>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background: var(--paper);
+    border-bottom: var(--border-strong);
+  }
+
+  .site-header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--sp-3);
+    padding-block: 0.75rem;
+  }
+
+  .brand {
+    display: grid;
+    gap: 0.1rem;
+    text-decoration: none;
+    color: var(--ink);
+  }
+
+  .brand__name {
+    font-size: 1.35rem;
+    letter-spacing: -0.01em;
+    line-height: 1.05;
+  }
+
+  .brand__name strong {
+    color: var(--clay-dark);
+  }
+
+  .brand__tag {
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  .site-nav ul {
+    display: flex;
+    gap: var(--sp-4);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+  }
+
+  .site-nav li a {
+    color: var(--ink);
+    text-decoration: none;
+    font-size: var(--step--1);
+    font-weight: 550;
+    letter-spacing: 0.02em;
+  }
+
+  .site-nav li a:hover,
+  .site-nav li a[aria-current='page'] {
+    color: var(--clay-dark);
+  }
+
+  .site-nav li a[aria-current='page'] {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.35em;
+    text-decoration-color: var(--clay);
+  }
+
+  a.site-nav__call {
+    color: var(--paper);
+    font-size: var(--step--1);
+    padding: 0.7em 1.1em;
+    text-decoration: none;
+    letter-spacing: 0.06em;
+  }
+
+  a.site-nav__call:hover {
+    color: var(--paper);
+  }
+
+  .nav-toggle {
+    display: none;
+    background: none;
+    border: 2px solid var(--ink);
+    padding: 0.55rem 0.65rem;
+    cursor: pointer;
+  }
+
+  .nav-toggle__bars,
+  .nav-toggle__bars::before,
+  .nav-toggle__bars::after {
+    display: block;
+    width: 1.35rem;
+    height: 2px;
+    background: var(--ink);
+    content: '';
+    position: relative;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+
+  .nav-toggle__bars::before {
+    position: absolute;
+    top: -6px;
+  }
+
+  .nav-toggle__bars::after {
+    position: absolute;
+    top: 6px;
+  }
+
+  .nav-toggle[aria-expanded='true'] .nav-toggle__bars {
+    background: transparent;
+  }
+
+  .nav-toggle[aria-expanded='true'] .nav-toggle__bars::before {
+    transform: translateY(6px) rotate(45deg);
+  }
+
+  .nav-toggle[aria-expanded='true'] .nav-toggle__bars::after {
+    transform: translateY(-6px) rotate(-45deg);
+  }
+
+  @media (max-width: 55.99rem) {
+    .nav-toggle {
+      display: block;
+    }
+
+    .site-nav {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: var(--paper);
+      border-bottom: 2px solid var(--ink);
+      padding: var(--sp-3) 1.125rem var(--sp-4);
+    }
+
+    .site-nav.is-open {
+      display: block;
+    }
+
+    .site-nav ul {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+    }
+
+    .site-nav li {
+      border-bottom: var(--border);
+    }
+
+    .site-nav li a {
+      display: block;
+      padding: var(--sp-3) 0;
+      font-size: var(--step-1);
+    }
+
+    .site-nav__call {
+      margin-top: var(--sp-3);
+      justify-content: center;
+      width: 100%;
+      font-size: var(--step-0);
+    }
+  }
+</style>
+
+<script>
+  const toggle = document.getElementById('nav-toggle');
+  const nav = document.getElementById('site-nav');
+
+  toggle?.addEventListener('click', () => {
+    const open = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!open));
+    nav?.classList.toggle('is-open', !open);
+  });
+
+  // Zamknij menu po kliknięciu linku
+  nav?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      toggle?.setAttribute('aria-expanded', 'false');
+      nav.classList.remove('is-open');
+    });
+  });
+</script>

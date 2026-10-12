@@ -1,0 +1,29 @@
+---
+import { site } from '../site.config.mjs';
+
+interface Props {
+  title?: string;
+  text?: string;
+}
+
+const {
+  title = 'Masz wykop do zrobienia?',
+  text = 'Zadzwoń i opisz zakres prac. Ustalimy, czy i kiedy możemy wykonać zlecenie.'
+} = Astro.props;
+---
+
+<section class="section section--ink">
+  <div class="container cta-band">
+    <div>
+      <p class="eyebrow">Kontakt</p>
+      <h2>{title}</h2>
+      <p class="lead">{text}</p>
+    </div>
+    <div class="cta-actions">
+      <a class="btn btn--primary" href={`tel:${site.phoneHref}`}>
+        <span class="btn__num" aria-hidden="true">☎</span> {site.phoneDisplay}
+      </a>
+      <a class="btn btn--ghost" href={`mailto:${site.email}`}>Napisz e-mail</a>
+    </div>
+  </div>
+</section>

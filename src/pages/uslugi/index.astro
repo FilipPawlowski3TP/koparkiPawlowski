@@ -1,0 +1,97 @@
+---
+import Base from '../../layouts/Base.astro';
+import SectionHead from '../../components/SectionHead.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { site } from '../../site.config.mjs';
+
+const services = [
+  {
+    num: '01',
+    name: 'Kopanie fundamentów',
+    desc: 'Wykopy pod ławy i ściany fundamentowe oraz lekkie konstrukcje.',
+    href: '/uslugi/wykopy-pod-fundamenty/'
+  },
+  {
+    num: '02',
+    name: 'Wykopy pod kanalizacje i instalacje',
+    desc: 'Wykopy liniowe pod kanalizację, wodę, prąd i inne media.',
+    href: '/uslugi/wykopy-pod-instalacje/'
+  },
+  {
+    num: '03',
+    name: 'Korytowanie',
+    desc: 'Korytowanie pod kostkę brukową, podjazdy, ścieżki i chodniki.',
+    href: '/uslugi/korytowanie-pod-kostke/'
+  },
+  {
+    num: '04',
+    name: 'Równanie terenu',
+    desc: 'Niwelacja i równanie działek, przygotowanie terenu pod dalsze prace.',
+    href: '/uslugi/niwelacja-terenu/'
+  }
+];
+---
+
+<Base
+  title="Usługi minikoparką Wrocław — wykopy, fundamenty, korytowanie | Koparki Pawłowski"
+  description="Zakres usług minikoparką do 2 ton z operatorem: kopanie fundamentów, wykopy pod kanalizacje i instalacje, korytowanie pod kostkę, równanie terenu. Wrocław i okolice."
+>
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow">Oferta</p>
+      <h1>Usługi minikoparką — Wrocław i okolice</h1>
+      <p class="lead">
+        Wykonujemy roboty ziemne minikoparką do 2 ton wraz z operatorem. Poniżej najczęstsze
+        rodzaje prac — jeśli nie widzisz swojego zlecenia na liście, zadzwoń: wykonujemy także
+        inne prace ziemne.
+      </p>
+
+      <ul class="service-list">
+        {
+          services.map((s) => (
+            <li class="service-item">
+              <a href={s.href}>
+                <span class="num">{s.num}</span>
+                <span>
+                  <span class="name">{s.name}</span>
+                  <p class="desc">{s.desc}</p>
+                </span>
+                <span class="arrow" aria-hidden="true">
+                  ↘
+                </span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+
+      <div class="grid-2 grid-2--top">
+        <div>
+          <h2>Oraz wszelkie prace ziemne</h2>
+          <p>
+            Poza standardowym zakresem realizujemy również inne roboty ziemne dopasowane do
+            działki i celu prac. Najprościej opisać problem przez telefon — powiemy, czy i jak
+            możemy pomóc.
+          </p>
+          <a class="btn btn--primary" href={`tel:${site.phoneHref}`}>
+            <span class="btn__num" aria-hidden="true">☎</span> {site.phoneDisplay}
+          </a>
+        </div>
+        <div>
+          <h2>Dla kogo pracujemy</h2>
+          <p>
+            Minikoparka do 2 ton sprawdza się wszędzie tam, gdzie liczy się precyzja i dostęp:
+            na prywatnych działkach, w ogrodach, przy budowie i remontach oraz przy pracach
+            instalacyjnych. Szczegóły każdego zlecenia ustalamy indywidualnie.
+          </p>
+          <p>
+            <a href="/obszar-dzialania/">Sprawdź obszar działania</a> lub
+            <a href="/kontakt/"> skontaktuj się z nami</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand />
+</Base>

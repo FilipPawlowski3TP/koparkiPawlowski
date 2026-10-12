@@ -1,0 +1,17 @@
+{
+  "name": "koparki-pawlowski",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Strona internetowa firmy Koparki Pawłowski — usługi minikoparką Wrocław i okolice",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.4.0",
+    "@fontsource-variable/archivo": "^5.2.0",
+    "astro": "^5.12.0"
+  }
+}

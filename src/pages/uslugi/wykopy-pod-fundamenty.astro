@@ -1,0 +1,110 @@
+---
+import Base from '../../layouts/Base.astro';
+import SectionHead from '../../components/SectionHead.astro';
+import ServiceDiagram from '../../components/ServiceDiagram.astro';
+import Faq from '../../components/Faq.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { site } from '../../site.config.mjs';
+
+const faq = [
+  {
+    q: 'Jak głęboko może kopać minikoparka?',
+    a: 'Głębokość wykopu zależy od modelu maszyny i warunków na działce. Podaj wymagane wymiary podczas rozmowy telefonicznej — potwierdzimy, czy mieszczą się w możliwościach sprzętu.'
+  },
+  {
+    q: 'Czy wykop zostanie zasypany po zakończeniu prac?',
+    a: 'Zakres — samo wykonanie wykopu czy również zasypanie i uporządkowanie — ustalamy przed rozpoczęciem prac. Powiedz, na jakim etapie budowy jesteś, a dobierzemy zakres usługi.'
+  },
+  {
+    q: 'Co jeśli w ziemi są kamienie, korzenie lub stary beton?',
+    a: 'Niespodzianki w gruncie zdarzają się często. Jeśli warunki odbiegają od ustaleń, informujemy o tym na bieżąco i wspólnie ustalamy dalsze działanie.'
+  }
+];
+---
+
+<Base
+  title="Kopanie fundamentów minikoparką Wrocław — wykopy pod fundamenty | Koparki Pawłowski"
+  description="Wykopy pod ławy i ściany fundamentowe minikoparką do 2 ton z operatorem. Wrocław i okolice. Ustal zakres telefonicznie: 792 611 777."
+>
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow"><a href="/uslugi/">Usługi</a> / 01</p>
+      <h1>Kopanie fundamentów minikoparką</h1>
+      <p class="lead">
+        Wykopy pod ławy fundamentowe, ściany fundamentowe i lekkie konstrukcje. Precyzyjnie,
+        z zachowaniem wymiarów ustalonych przed rozpoczęciem prac. Wrocław i okolice.
+      </p>
+      <div class="cta-actions">
+        <a class="btn btn--primary" href={`tel:${site.phoneHref}`}>
+          <span class="btn__num" aria-hidden="true">☎</span> {site.phoneDisplay}
+        </a>
+        <a class="btn btn--ghost" href="/kontakt/">Wyślij zapytanie</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--deep">
+    <div class="container grid-2">
+      <div>
+        <SectionHead eyebrow="Zakres" title="Co obejmuje usługa" />
+        <p>
+          Każde zlecenie wygląda inaczej — inna jest geometria wykopu, grunt i dostęp do działki.
+          Typowy zakres przy kopaniu fundamentów obejmuje:
+        </p>
+        <ul>
+          <li>wykopy pod ławy fundamentowe domów, garaży, altan i lekkich konstrukcji,</li>
+          <li>wykopy pod ściany fundamentowe i ścianki oporowe,</li>
+          <li>wykopy pod słupki, pale i elementy małej architektury,</li>
+          <li>korytowanie i wyrównanie dna wykopu przed betonowaniem.</li>
+        </ul>
+        <p>
+          Wymiary wykopu (głębokość, szerokość, długość) podaj na podstawie projektu lub
+          ustaleń z wykonawcą robót — od nich zależy dobór sprzętu i czas pracy.
+        </p>
+      </div>
+      <ServiceDiagram variant="fundament" caption="Przekrój wykopu pod fundament — schemat" />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container grid-2">
+      <div>
+        <SectionHead eyebrow="Kiedy warto" title="Dlaczego minikoparka przy fundamentach" />
+        <p>
+          Przy budowie domu jednorodzinnego i pracach na zagospodarowanej działce liczy się
+          precyzja i oszczędność miejsca. Minikoparka do 2 ton:
+        </p>
+        <ul>
+          <li>wjeżdża przez wąskie przejazdy i pracuje przy istniejącej zabudowie,</li>
+          <li>mniejsza powierzchnia robocza oznacza mniej rozjeżdżonego terenu,</li>
+          <li>sprawdza się w wykopach o niewielkiej szerokości, gdzie duża koparka jest nieporęczna.</li>
+        </ul>
+      </div>
+      <div>
+        <SectionHead eyebrow="Przebieg" title="Jak wygląda realizacja" />
+        <ol>
+          <li><strong>Rozmowa</strong> — podajesz lokalizację, wymiary wykopu i termin.</li>
+          <li><strong>Ustalenia</strong> — potwierdzamy zakres, dostęp do działki i warunki gruntu, o ile są znane.</li>
+          <li><strong>Wykop</strong> — przyjeżdżamy z minikoparką i operatorem, wykonujemy wykop zgodnie z ustaleniami.</li>
+          <li><strong>Odbiór</strong> — sprawdzasz wymiary i stan wykopu na miejscu.</li>
+        </ol>
+        <p>
+          Zasypanie wykopu i wywóz urobku nie są objęte standardowym zakresem — jeśli ich
+          potrzebujesz, uwzględnij to w rozmowie.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--deep">
+    <div class="container">
+      <SectionHead eyebrow="Pytania i odpowiedzi" title="Fundamenty — pytania" />
+      <Faq items={faq} />
+    </div>
+  </section>
+
+  <CtaBand
+    title="Planujesz fundamenty?"
+    text="Zadzwoń i podaj wymiary wykopu oraz lokalizację prac. Szybko ustalimy, czy i kiedy możemy wykonać zlecenie."
+  />
+</Base>

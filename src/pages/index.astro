@@ -1,0 +1,276 @@
+---
+import Base from '../layouts/Base.astro';
+import SectionHead from '../components/SectionHead.astro';
+import TrenchDiagram from '../components/TrenchDiagram.astro';
+import ServiceDiagram from '../components/ServiceDiagram.astro';
+import Faq from '../components/Faq.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { site } from '../site.config.mjs';
+
+const services = [
+  {
+    num: '01',
+    name: 'Kopanie fundamentów',
+    desc: 'Wykopy pod ławy i ściany fundamentowe oraz lekkie konstrukcje — z zachowaniem wymiarów ustalonych przed rozpoczęciem prac.',
+    href: '/uslugi/wykopy-pod-fundamenty/'
+  },
+  {
+    num: '02',
+    name: 'Wykopy pod kanalizacje i instalacje',
+    desc: 'Wykopy liniowe pod kanalizację, wodę, prąd i inne media. Również zasypanie i uporządkowanie wykopu po pracach instalacyjnych.',
+    href: '/uslugi/wykopy-pod-instalacje/'
+  },
+  {
+    num: '03',
+    name: 'Korytowanie',
+    desc: 'Korytowanie pod kostkę brukową, podjazdy, ścieżki i chodniki — przygotowanie podłoża pod dalsze prace brukarskie.',
+    href: '/uslugi/korytowanie-pod-kostke/'
+  },
+  {
+    num: '04',
+    name: 'Równanie terenu',
+    desc: 'Niwelacja i równanie działek, ściąganie humusu, przygotowanie terenu pod budowę, ogród lub zagospodarowanie.',
+    href: '/uslugi/niwelacja-terenu/'
+  }
+];
+
+const faq = [
+  {
+    q: 'Czy usługa jest z operatorem?',
+    a: 'Tak. Minikoparka jest dostarczana wraz z operatorem — nie wynajmujemy samego sprzętu. Operator wykonuje pracę i odpowiada za jej przebieg.'
+  },
+  {
+    q: 'Na jakim terenie pracujecie?',
+    a: 'Działamy we Wrocławiu i okolicach. Jeśli nie masz pewności, czy dojedziemy pod Twój adres, zadzwoń — potwierdzimy to podczas rozmowy.'
+  },
+  {
+    q: 'Ile kosztuje usługa minikoparką?',
+    a: 'Koszt zależy od rodzaju prac, głębokości, gruntu i czasu potrzebnego na realizację. Wyceniamy po krótkiej rozmowie telefonicznej — wystarczy opisać, co jest do zrobienia i podać lokalizację.'
+  },
+  {
+    q: 'Jakim sprzętem wykonujecie prace?',
+    a: 'Pracujemy minikoparką do 2 ton. Kompaktowe wymiary maszyny pozwalają pracować na ciasnych działkach, w ogrodach i za wąskimi przejazdami, gdzie większy sprzęt nie wjedzie.'
+  },
+  {
+    q: 'W jakich godzinach można się kontaktować?',
+    a: 'Telefon odbieramy od poniedziałku do piątku w godzinach 7:30–20:30 oraz w soboty w godzinach 8:00–18:30. W niedziele firma jest nieczynna.'
+  },
+  {
+    q: 'Jak przygotować się do przyjazdu koparki?',
+    a: 'Przed rozpoczęciem prac warto upewnić się, że znamy przebieg instalacji na działce (woda, prąd, gaz, kanalizacja) i wskazać dokładne miejsce prac. Szczegóły ustalamy podczas rozmowy telefonicznej.'
+  }
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a }
+  }))
+};
+---
+
+<Base
+  title="Usługi minikoparką Wrocław — wykopy, fundamenty, niwelacja | Koparki Pawłowski"
+  description="Koparki Pawłowski: usługi minikoparką do 2 ton z operatorem we Wrocławiu i okolicach. Kopanie fundamentów, wykopy pod kanalizacje i instalacje, korytowanie, równanie terenu. Zadzwoń: 792 611 777."
+  jsonLd={faqSchema}
+>
+  <!-- HERO -->
+  <section class="section hero">
+    <div class="container grid-2 grid-2--wide-left">
+      <div>
+        <p class="eyebrow">{site.area} · minikoparka do 2 t z operatorem</p>
+        <h1>Wykopy i prace ziemne minikoparką we Wrocławiu</h1>
+        <p class="lead">
+          Kopanie fundamentów, wykopy pod kanalizacje i instalacje, korytowanie oraz równanie
+          terenu. Mały sprzęt, który mieści się tam, gdzie duży nie wjedzie.
+        </p>
+        <div class="cta-actions">
+          <a class="btn btn--primary" href={`tel:${site.phoneHref}`}>
+            <span class="btn__num" aria-hidden="true">☎</span> {site.phoneDisplay}
+          </a>
+          <a class="btn btn--ghost" href="/uslugi/">Zobacz usługi</a>
+        </div>
+      </div>
+      <TrenchDiagram />
+    </div>
+
+    <div class="container hero__facts">
+      <div class="fact-bar">
+        <div class="fact">
+          <span class="k">Sprzęt</span>
+          <span class="v">Minikoparka do 2 ton</span>
+        </div>
+        <div class="fact">
+          <span class="k">Sposób realizacji</span>
+          <span class="v">Zawsze z operatorem</span>
+        </div>
+        <div class="fact">
+          <span class="k">Kontakt</span>
+          <span class="v">Pn–Pt 7:30–20:30, Sob 8:00–18:30</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- USŁUGI -->
+  <section class="section">
+    <div class="container">
+      <SectionHead
+        eyebrow="01 — Usługi"
+        title="Co robimy minikoparką"
+        lead="Zakres potwierdzony przez firmę. Każde zlecenie ustalamy indywidualnie — telefonicznie."
+      />
+      <ul class="service-list">
+        {
+          services.map((s) => (
+            <li class="service-item">
+              <a href={s.href}>
+                <span class="num">{s.num}</span>
+                <span>
+                  <span class="name">{s.name}</span>
+                  <p class="desc">{s.desc}</p>
+                </span>
+                <span class="arrow" aria-hidden="true">
+                  ↘
+                </span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <p class="service-more">
+        Potrzebujesz innych robót ziemnych? <strong>Oraz wszelkie prace ziemne</strong> —
+        <a href="/kontakt/">zapytaj telefonicznie</a>.
+      </p>
+    </div>
+  </section>
+
+  <!-- PROCES -->
+  <section class="section section--ink">
+    <div class="container">
+      <p class="eyebrow">Jak pracujemy</p>
+      <h2>Od telefonu do gotowej pracy</h2>
+      <ol class="steps">
+        <li class="step">
+          <span class="num">Krok 01</span>
+          <h3>Rozmowa</h3>
+          <p>Dzwonisz i opisujesz, co jest do zrobienia. Podajesz lokalizację prac i przybliżony zakres.</p>
+        </li>
+        <li class="step">
+          <span class="num">Krok 02</span>
+          <h3>Ustalenia</h3>
+          <p>Ustalamy zakres, warunki i termin realizacji. Wiesz, co zostanie wykonane i kiedy.</p>
+        </li>
+        <li class="step">
+          <span class="num">Krok 03</span>
+          <h3>Realizacja</h3>
+          <p>Przyjeżdżamy z minikoparką i operatorem. Wykonujemy pracę zgodnie z ustaleniami.</p>
+        </li>
+        <li class="step">
+          <span class="num">Krok 04</span>
+          <h3>Odbiór</h3>
+          <p>Sprawdzasz efekt na miejscu. Jeśli w trakcie pojawią się dodatkowe prace — ustalamy je na bieżąco.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- SPRZĘT -->
+  <section class="section">
+    <div class="container grid-2">
+      <div>
+        <SectionHead
+          eyebrow="02 — Sprzęt"
+          title="Minikoparka do 2 ton — tam, gdzie duży sprzęt nie wjedzie"
+        />
+        <p>
+          Minikoparka tej klasy jest kompaktowa: sprawdza się na ciasnych działkach, w ogrodach,
+          za wąskimi przejazdami i w pobliżu zabudowy. Wykonuje wykopy o różnym przeznaczeniu —
+          od fundamentów po instalacje podziemne.
+        </p>
+        <ul>
+          <li>praca w ograniczonej przestrzeni i przy istniejącej zabudowie,</li>
+          <li>precyzyjne wykopy liniowe pod instalacje,</li>
+          <li>kompleksowa obsługa: kopanie, korytowanie, niwelacja.</li>
+        </ul>
+        <p>
+          Każdą realizację wykonujemy z operatorem. Zakres i możliwości dopasowujemy do konkretnej
+          działki — dlatego najpierw krótka rozmowa telefoniczna.
+        </p>
+        <a class="btn btn--ghost" href="/uslugi/">Pełna oferta usług</a>
+      </div>
+      <ServiceDiagram variant="fundament" caption="Schemat wykopu pod fundament — rysunek poglądowy" />
+    </div>
+  </section>
+
+  <!-- OBSZAR -->
+  <section class="section section--deep">
+    <div class="container grid-2">
+      <div>
+        <SectionHead eyebrow="03 — Obszar działania" title="Wrocław i okolice" />
+        <p>
+          Realizujemy prace ziemne na terenie Wrocławia i okolic. Nie wiesz, czy dojedziemy pod
+          Twój adres? Zadzwoń — podczas jednej rozmowy potwierdzimy dojazd i przybliżony termin.
+        </p>
+        <a class="btn btn--primary" href={`tel:${site.phoneHref}`}>
+          <span class="btn__num" aria-hidden="true">☎</span> {site.phoneDisplay}
+        </a>
+      </div>
+      <div>
+        <h3>Godziny otwarcia</h3>
+        <table class="hours-table">
+          <thead>
+            <tr><th>Dzień</th><th>Godziny</th></tr>
+          </thead>
+          <tbody>
+            {
+              site.hours.map((h) => (
+                <tr>
+                  <td>{h.days}</td>
+                  <td>{h.hours}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section">
+    <div class="container">
+      <SectionHead eyebrow="04 — Pytania i odpowiedzi" title="Najczęstsze pytania" />
+      <Faq items={faq} />
+    </div>
+  </section>
+
+  <CtaBand />
+</Base>
+
+<style>
+  .hero {
+    padding-top: var(--sp-5);
+  }
+
+  .hero h1 {
+    margin-bottom: var(--sp-3);
+  }
+
+  .hero .cta-actions {
+    margin-top: var(--sp-4);
+  }
+
+  .hero__facts {
+    margin-top: var(--sp-6);
+  }
+
+  .service-more {
+    margin-top: var(--sp-4);
+    font-size: var(--step-1);
+    max-width: 60ch;
+  }
+</style>

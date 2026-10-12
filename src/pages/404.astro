@@ -1,0 +1,28 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../site.config.mjs';
+---
+
+<Base
+  title="Nie znaleziono strony | Koparki Pawłowski"
+  description="Strona o podanym adresie nie istnieje. Wróć na stronę główną lub zadzwoń: 792 611 777."
+>
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow">Błąd 404</p>
+      <h1>Nie znaleziono takiej strony</h1>
+      <p class="lead">
+        Adres, pod który trafiłeś, nie istnieje lub został zmieniony. Wróć na stronę główną
+        albo przejdź od razu do kontaktu.
+      </p>
+      <div class="cta-actions">
+        <a class="btn btn--primary" href="/">
+          <span class="btn__num" aria-hidden="true">←</span> Strona główna
+        </a>
+        <a class="btn btn--ghost" href={`tel:${site.phoneHref}`}>
+          <span class="btn__num" aria-hidden="true">☎</span> {site.phoneDisplay}
+        </a>
+      </div>
+    </div>
+  </section>
+</Base>

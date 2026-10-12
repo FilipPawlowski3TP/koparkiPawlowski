@@ -1,0 +1,188 @@
+---
+import { site } from '../site.config.mjs';
+---
+
+<form class="form" id="contact-form" novalidate>
+  <p class="form__intro">
+    Pola oznaczone <span class="req">*</span> są wymagane. Najszybciej odpowiadamy telefonicznie —
+    <a href={`tel:${site.phoneHref}`}>{site.phoneDisplay}</a>.
+  </p>
+
+  <label>
+    Telefon <span class="req">*</span>
+    <input type="tel" name="phone" id="f-phone" required autocomplete="tel" placeholder="np. 501 234 567" />
+    <span class="field-error" id="e-phone" hidden></span>
+  </label>
+
+  <label>
+    Imię
+    <input type="text" name="name" id="f-name" autocomplete="name" maxlength="100" />
+    <span class="field-error" id="e-name" hidden></span>
+  </label>
+
+  <label>
+    Miejscowość lub adres prac
+    <input type="text" name="location" id="f-location" maxlength="200" placeholder="np. Wrocław, Krzyki" />
+    <span class="field-error" id="e-location" hidden></span>
+  </label>
+
+  <label>
+    Opisz prace <span class="req">*</span>
+    <textarea name="message" id="f-message" required maxlength="2000" placeholder="Co jest do zrobienia, przybliżone wymiary, termin..."></textarea>
+    <span class="field-error" id="e-message" hidden></span>
+  </label>
+
+  <label class="consent">
+    <input type="checkbox" name="consent" id="f-consent" required />
+    <span>
+      Wyrażam zgodę na przetwarzanie moich danych w celu odpowiedzi na zapytanie, zgodnie z
+      <a href="/polityka-prywatnosci/">polityką prywatności</a>. <span class="req">*</span>
+    </span>
+  </label>
+  <span class="field-error" id="e-consent" hidden></span>
+
+  <!-- Pułapka na boty: pole niewidoczne dla użytkownika -->
+  <div class="hp" aria-hidden="true">
+    <label for="f-firma">Firma</label>
+    <input type="text" name="firma" id="f-firma" tabindex="-1" autocomplete="off" />
+  </div>
+
+  <input type="hidden" name="t" id="f-t" value="" />
+
+  <button type="submit" class="btn btn--primary" id="f-submit">Wyślij zapytanie</button>
+
+  <div class="form-status" id="form-status" role="status" aria-live="polite" hidden></div>
+
+  <noscript>
+    <p class="form-status form-status--error">
+      Formularz wymaga włączonej obsługi JavaScript. Zamiast tego zadzwoń pod
+      <a href={`tel:${site.phoneHref}`}>{site.phoneDisplay}</a> albo napisz na
+      <a href={`mailto:${site.email}`}>{site.email}</a>.
+    </p>
+  </noscript>
+</form>
+
+<style>
+  .form__intro {
+    color: var(--ink-soft);
+    font-size: var(--step--1);
+    margin-bottom: 0;
+  }
+</style>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const status = document.getElementById('form-status') as HTMLDivElement;
+  const submitBtn = document.getElementById('f-submit') as HTMLButtonElement;
+  const timeField = document.getElementById('f-t') as HTMLInputElement;
+
+  // Znacznik czasu załadowania formularza (pułapka czasowa po stronie serwera)
+  const loadedAt = Date.now();
+  if (timeField) timeField.value = String(loadedAt);
+
+  const errors: Record<string, string> = {
+    phone: 'Podaj numer telefonu (min. 9 cyfr).',
+    message: 'Opisz krótko prace (min. 10 znaków).',
+    consent: 'Zaznacz zgodę, aby wysłać formularz.'
+  };
+
+  function showError(id: string, msg: string | null) {
+    const el = document.getElementById('e-' + id);
+    if (!el) return;
+    if (msg) {
+      el.textContent = msg;
+      el.hidden = false;
+    } else {
+      el.textContent = '';
+      el.hidden = true;
+    }
+  }
+
+  function validate(): boolean {
+    let ok = true;
+
+    const phone = (document.getElementById('f-phone') as HTMLInputElement).value.trim();
+    const digits = phone.replace(/\D/g, '');
+    if (digits.length < 9) {
+      showError('phone', errors.phone);
+      ok = false;
+    } else showError('phone', null);
+
+    const message = (document.getElementById('f-message') as HTMLTextAreaElement).value.trim();
+    if (message.length < 10) {
+      showError('message', errors.message);
+      ok = false;
+    } else showError('message', null);
+
+    const consent = (document.getElementById('f-consent') as HTMLInputElement).checked;
+    if (!consent) {
+      showError('consent', errors.consent);
+      ok = false;
+    } else showError('consent', null);
+
+    return ok;
+  }
+
+  function setStatus(kind: 'ok' | 'error', html: string) {
+    status.className = 'form-status form-status--' + kind;
+    status.innerHTML = html;
+    status.hidden = false;
+    status.focus?.();
+  }
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!validate()) return;
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Wysyłanie…';
+
+    const payload = {
+      phone: (document.getElementById('f-phone') as HTMLInputElement).value.trim(),
+      name: (document.getElementById('f-name') as HTMLInputElement).value.trim(),
+      location: (document.getElementById('f-location') as HTMLInputElement).value.trim(),
+      message: (document.getElementById('f-message') as HTMLTextAreaElement).value.trim(),
+      consent: (document.getElementById('f-consent') as HTMLInputElement).checked,
+      firma: (document.getElementById('f-firma') as HTMLInputElement).value,
+      t: timeField.value
+    };
+
+    try {
+      const res = await fetch('/api/kontakt', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      const data = await res.json().catch(() => ({}));
+
+      if (res.ok && data.ok) {
+        form.reset();
+        if (timeField) timeField.value = String(Date.now());
+        setStatus(
+          'ok',
+          'Dziękujemy za wiadomość. Odpowiemy na podany numer telefonu. Jeśli sprawa jest pilna — zadzwoń do nas.'
+        );
+      } else if (res.status === 503) {
+        setStatus(
+          'error',
+          'Formularz jest chwilowo niedostępny. Zadzwoń pod numer podany na górze strony albo napisz na adres e-mail ze stopki.'
+        );
+      } else {
+        setStatus(
+          'error',
+          'Nie udało się wysłać formularza' +
+            (data.error ? ': ' + String(data.error) : '') +
+            '. Sprawdź pola i spróbuj ponownie albo zadzwoń.'
+        );
+      }
+    } catch {
+      setStatus(
+        'error',
+        'Brak połączenia z serwerem. Spróbuj ponownie za chwilę albo zadzwoń — numer telefonu znajdziesz na górze strony.'
+      );
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Wyślij zapytanie';
+    }
+  });
+</script>

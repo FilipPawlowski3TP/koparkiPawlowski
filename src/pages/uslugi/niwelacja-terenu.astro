@@ -1,0 +1,103 @@
+---
+import Base from '../../layouts/Base.astro';
+import SectionHead from '../../components/SectionHead.astro';
+import ServiceDiagram from '../../components/ServiceDiagram.astro';
+import Faq from '../../components/Faq.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { site } from '../../site.config.mjs';
+
+const faq = [
+  {
+    q: 'Czy wykonujecie niwelację dużych działek?',
+    a: 'Zakres zależy od powierzchni i warunków terenu. Minikoparka do 2 ton sprawdza się przy działkach prywatnych i mniejszych obszarach. Podaj powierzchnię i cel prac — ocenimy, czy i w jakim terminie możemy to wykonać.'
+  },
+  {
+    q: 'Co dzieje się z nadmiarem ziemi?',
+    a: 'Ziemia z prac niwelacyjnych może wymagać wywozu lub zagospodarowania na miejscu. Nie jest to standardowo objęte zakresem — ustal to przed realizacją, abyśmy mogli zaplanować prace.'
+  },
+  {
+    q: 'Czy równacie teren pod trawnik lub ogród?',
+    a: 'Tak, równanie i niwelacja terenu to szeroki zakres prac — również przygotowanie działki pod trawnik, ogród czy inne zagospodarowanie.'
+  }
+];
+---
+
+<Base
+  title="Równanie terenu i niwelacja działki Wrocław | Koparki Pawłowski"
+  description="Równanie i niwelacja terenu minikoparką z operatorem. Przygotowanie działki pod budowę, ogród lub zagospodarowanie. Wrocław i okolice. Tel. 792 611 777."
+>
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow"><a href="/uslugi/">Usługi</a> / 04</p>
+      <h1>Równanie terenu i niwelacja</h1>
+      <p class="lead">
+        Wyrównywanie działek, korytowanie terenu i przygotowanie podłoża pod budowę, ogród lub
+        zagospodarowanie. Wrocław i okolice.
+      </p>
+      <div class="cta-actions">
+        <a class="btn btn--primary" href={`tel:${site.phoneHref}`}>
+          <span class="btn__num" aria-hidden="true">☎</span> {site.phoneDisplay}
+        </a>
+        <a class="btn btn--ghost" href="/kontakt/">Wyślij zapytanie</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--deep">
+    <div class="container grid-2">
+      <div>
+        <SectionHead eyebrow="Zakres" title="Kiedy potrzebna jest niwelacja" />
+        <ul>
+          <li>wyrównanie działki przed budową lub dalszymi pracami,</li>
+          <li>równanie terenu po zakończeniu robót ziemnych i instalacyjnych,</li>
+          <li>przygotowanie podłoża pod trawnik, ogród lub nawierzchnię,</li>
+          <li>korytowanie i profilowanie terenu,</li>
+          <li>prace porządkowe na działce — usuwanie nierówności i modelowanie powierzchni.</li>
+        </ul>
+        <p>
+          Cel prac decyduje o sposobie realizacji — inne wymagania ma teren pod fundamenty,
+          inne pod trawnik. Podaj, co planujesz na działce, a dobierzemy odpowiedni zakres.
+        </p>
+      </div>
+      <ServiceDiagram variant="niwelacja" caption="Niwelacja terenu — schemat" />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container grid-2">
+      <div>
+        <SectionHead eyebrow="Przebieg" title="Jak wygląda realizacja" />
+        <ol>
+          <li><strong>Rozmowa</strong> — opisujesz stan działki i cel prac, podajesz lokalizację.</li>
+          <li><strong>Ustalenia</strong> — ustalamy zakres, poziom docelowy i sposób zagospodarowania urobku.</li>
+          <li><strong>Prace</strong> — wykonujemy równanie i profilowanie terenu minikoparką z operatorem.</li>
+          <li><strong>Odbiór</strong> — sprawdzasz efekt i ustalasz dalsze kroki.</li>
+        </ol>
+      </div>
+      <div>
+        <SectionHead eyebrow="Powiązane usługi" title="Często łączone z niwelacją" />
+        <p>
+          Niwelacja często występuje razem z innymi robotami ziemnymi: korytowaniem pod nawierzchnię,
+          wykopami pod instalacje czy przygotowaniem terenu pod fundamenty. Realizacja kilku prac
+          podczas jednego wyjazdu to mniej organizacji po Twojej stronie.
+        </p>
+        <p>
+          <a href="/uslugi/">Zobacz wszystkie usługi</a> lub
+          <a href="/kontakt/"> opisz swoją działkę telefonicznie</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--deep">
+    <div class="container">
+      <SectionHead eyebrow="Pytania i odpowiedzi" title="Niwelacja — pytania" />
+      <Faq items={faq} />
+    </div>
+  </section>
+
+  <CtaBand
+    title="Działka wymaga wyrównania?"
+    text="Zadzwoń i opisz stan terenu oraz cel prac. Ustalimy zakres i termin realizacji."
+  />
+</Base>

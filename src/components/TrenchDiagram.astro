@@ -1,0 +1,65 @@
+---
+// Rysunek techniczny — przekrój wykopu (ilustracja hero).
+// Schemat poglądowy, nie fotografia realizacji.
+---
+
+<figure class="diagram">
+  <svg viewBox="0 0 720 440" role="img" aria-labelledby="trench-title trench-desc">
+    <title id="trench-title">Schematyczny przekrój wykopu</title>
+    <desc id="trench-desc">
+      Rysunek techniczny przedstawiający przekrój poprzeczny wykopu w gruncie: linię terenu,
+      ściany i dno wykopu oraz linie wymiarowe głębokości i szerokości.
+    </desc>
+
+    <defs>
+      <pattern id="hatch" width="14" height="14" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
+        <line x1="0" y1="0" x2="0" y2="14" stroke="#b3a68e" stroke-width="1.5" />
+      </pattern>
+      <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <path d="M 0 0 L 10 5 L 0 10 z" fill="#ab4d26" />
+      </marker>
+    </defs>
+
+    <!-- Warstwa gruntu -->
+    <rect x="20" y="130" width="680" height="220" fill="url(#hatch)" />
+    <rect x="20" y="130" width="680" height="220" fill="#ebe3d4" opacity="0.55" />
+
+    <!-- Wykop -->
+    <rect x="250" y="130" width="220" height="180" fill="#f4efe6" />
+    <rect x="250" y="130" width="220" height="180" fill="none" stroke="#211c17" stroke-width="3" />
+
+    <!-- Linia terenu -->
+    <line x1="20" y1="130" x2="700" y2="130" stroke="#211c17" stroke-width="3.5" />
+
+    <!-- Wymiar: głębokość -->
+    <line x1="195" y1="130" x2="195" y2="310" stroke="#ab4d26" stroke-width="2" marker-start="url(#arr)" marker-end="url(#arr)" />
+    <line x1="205" y1="130" x2="240" y2="130" stroke="#ab4d26" stroke-width="1.5" />
+    <line x1="205" y1="310" x2="240" y2="310" stroke="#ab4d26" stroke-width="1.5" />
+    <text x="180" y="230" text-anchor="end" font-family="ui-monospace, monospace" font-size="17" letter-spacing="2" fill="#ab4d26">GŁĘBOKOŚĆ</text>
+
+    <!-- Wymiar: szerokość -->
+    <line x1="250" y1="365" x2="470" y2="365" stroke="#ab4d26" stroke-width="2" marker-start="url(#arr)" marker-end="url(#arr)" />
+    <line x1="250" y1="320" x2="250" y2="375" stroke="#ab4d26" stroke-width="1.5" />
+    <line x1="470" y1="320" x2="470" y2="375" stroke="#ab4d26" stroke-width="1.5" />
+    <text x="360" y="400" text-anchor="middle" font-family="ui-monospace, monospace" font-size="17" letter-spacing="2" fill="#ab4d26">SZEROKOŚĆ</text>
+
+    <!-- Etykiety -->
+    <text x="60" y="118" font-family="ui-monospace, monospace" font-size="17" letter-spacing="3" fill="#5d554a">GRUNT</text>
+    <text x="285" y="235" font-family="ui-monospace, monospace" font-size="17" letter-spacing="3" fill="#211c17">WYKOP</text>
+    <text x="285" y="336" font-family="ui-monospace, monospace" font-size="14" letter-spacing="3" fill="#5d554a">DNO WYKOPU</text>
+
+    <!-- Siatka narożna (motyw rysunku technicznego) -->
+    <g stroke="#a89b86" stroke-width="1.5">
+      <line x1="20" y1="20" x2="20" y2="52" />
+      <line x1="20" y1="20" x2="52" y2="20" />
+      <line x1="700" y1="20" x2="700" y2="52" />
+      <line x1="700" y1="20" x2="668" y2="20" />
+      <line x1="20" y1="420" x2="20" y2="388" />
+      <line x1="20" y1="420" x2="52" y2="420" />
+      <line x1="700" y1="420" x2="700" y2="388" />
+      <line x1="700" y1="420" x2="668" y2="420" />
+    </g>
+    <text x="40" y="46" font-family="ui-monospace, monospace" font-size="13" letter-spacing="2" fill="#a89b86">PRZEKRÓJ P1</text>
+  </svg>
+  <figcaption>Przekrój wykopu — schemat poglądowy</figcaption>
+</figure>
