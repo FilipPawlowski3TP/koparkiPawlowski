@@ -2,7 +2,7 @@
 import Base from '../layouts/Base.astro';
 import SectionHead from '../components/SectionHead.astro';
 import TrenchDiagram from '../components/TrenchDiagram.astro';
-import ServiceDiagram from '../components/ServiceDiagram.astro';
+import Photo from '../components/Photo.astro';
 import Faq from '../components/Faq.astro';
 import CtaBand from '../components/CtaBand.astro';
 import { site } from '../site.config.mjs';
@@ -202,15 +202,64 @@ const faqSchema = {
         </p>
         <a class="btn btn--ghost" href="/uslugi/">Pełna oferta usług</a>
       </div>
-      <ServiceDiagram variant="fundament" caption="Schemat wykopu pod fundament — rysunek poglądowy" />
+      <Photo
+        src="/images/praca-w-ciasnym-przejsciu-sm.webp"
+        alt="Minikoparka Kubota pracująca w wąskim przejściu między ścianą budynku a chodnikiem."
+        width={600}
+        height={800}
+        caption="Wąskie przejście przy budynku — realna realizacja"
+      />
+    </div>
+  </section>
+
+  <!-- REALIZACJE -->
+  <section class="section section--deep">
+    <div class="container">
+      <SectionHead
+        eyebrow="03 — Realizacje"
+        title="Nasza maszyna przy pracy"
+        lead="Prawdziwe zdjęcia z robót — wykopy, prace na ciasnych działkach, załadunek urobku i transport."
+      />
+      <div class="photo-strip">
+        <Photo
+          src="/images/prace-miejskie-kopanie-sm.webp"
+          alt="Minikoparka podczas kopania wykopu w zabudowie miejskiej."
+          width={800}
+          height={600}
+          caption="Zabudowa miejska"
+          crop
+        />
+        <Photo
+          src="/images/wykop-liniowy-trawnik-sm.webp"
+          alt="Długi wąski wykop liniowy prowadzony przez trawnik na działce."
+          width={600}
+          height={800}
+          caption="Wykop liniowy"
+          crop
+        />
+        <Photo
+          src="/images/zaladunek-urobku-sm.webp"
+          alt="Minikoparka ładująca ziemię do kontenera na urobek."
+          width={600}
+          height={800}
+          caption="Załadunek urobku"
+          crop
+        />
+      </div>
+      <div class="cta-actions">
+        <a class="btn btn--ghost" href="/realizacje/">Zobacz wszystkie realizacje →</a>
+        <a class="btn btn--primary" href={`tel:${site.phoneHref}`}>
+          <span class="btn__num" aria-hidden="true">☎</span> {site.phoneDisplay}
+        </a>
+      </div>
     </div>
   </section>
 
   <!-- OBSZAR -->
-  <section class="section section--deep">
+  <section class="section">
     <div class="container grid-2">
       <div>
-        <SectionHead eyebrow="03 — Obszar działania" title="Wrocław i okolice" />
+        <SectionHead eyebrow="04 — Obszar działania" title="Wrocław i okolice" />
         <p>
           Realizujemy prace ziemne na terenie Wrocławia i okolic. Nie wiesz, czy dojedziemy pod
           Twój adres? Zadzwoń — podczas jednej rozmowy potwierdzimy dojazd i przybliżony termin.
@@ -243,7 +292,7 @@ const faqSchema = {
   <!-- FAQ -->
   <section class="section">
     <div class="container">
-      <SectionHead eyebrow="04 — Pytania i odpowiedzi" title="Najczęstsze pytania" />
+      <SectionHead eyebrow="05 — Pytania i odpowiedzi" title="Najczęstsze pytania" />
       <Faq items={faq} />
     </div>
   </section>

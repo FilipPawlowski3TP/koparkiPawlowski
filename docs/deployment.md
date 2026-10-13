@@ -1,7 +1,7 @@
 # Deployment — Koparki Pawłowski
 
-Stan: **przygotowane do wdrożenia; wdrożenie produkcyjne NIE wykonane** (wymaga działań
-właściciela i jego zgody — konfiguracja kont, DNS, ewentualne koszty).
+Stan: **wdrożone produkcyjnie** (Cloudflare Workers z Git, domena podpięta, Resend
+skonfigurowany). Poniżej pełna procedura i uwagi utrzymaniowe.
 
 ## Wybrany hosting: Cloudflare Pages (plan Free)
 
@@ -29,7 +29,27 @@ public/               — robots.txt, _redirects, _headers, favicon.svg
 dist/                 — build produkcyjny (generowany, nie commitowany)
 ```
 
-## Procedura wdrożenia krok po kroku
+## Uwaga: typ wdrożenia — Workers vs Pages (WAŻNE)
+
+Strona działa jako **Cloudflare Worker z zasobami statycznymi** (Workers Builds z Git,
+adres `koparkipawlowski.*.workers.dev` + domena własna). W takim wdrożeniu katalog
+`functions/` (konwencja Cloudflare Pages) **nie jest używany** — dlatego dodano:
+
+- `worker/index.js` — router: `/api/kontakt` (POST) → wspólna logika z
+  `functions/api/kontakt.js`, wszystko inne → zasoby statyczne (`dist/`);
+- `wrangler.jsonc` — konfiguracja wdrożenia (main + assets + obsługa 404).
+
+Dzięki temu ten sam kod działa w obu scenariuszach: przy wdrożeniu Pages katalog
+`functions/` działa sam z siebie, przy wdrożeniu Workers router z `worker/index.js`.
+
+Zmienne środowiskowe (Workers: Settings → **Runtime variables and secrets → Production**):
+`RESEND_API_KEY`, `CONTACT_TO`, `CONTACT_FROM`. **Po zmianie zmiennych wykonaj nowe
+wdrożenie** (Deploy → Retry/Redeploy) — zmienne są wiązane przy wdrożeniu.
+
+Weryfikacja po wdrożeniu: `POST /api/kontakt` z poprawnymi danymi powinien zwrócić
+JSON `{"ok":true}` i dostarczyć e-mail (przy braku klucza — 503; przy błędzie Resend — 502).
+
+## Procedura wdrożenia krok po kroku (od zera)
 
 1. **Konto Cloudflare** (wymaga właściciel — darmowe): https://dash.cloudflare.com/sign-up
 2. **Repozytorium Git** (np. GitHub, prywatne) — wypchnąć zawartość projektu.

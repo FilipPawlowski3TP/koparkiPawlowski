@@ -933,20 +933,21 @@ Research SEO: WYKONANY (docs/strategia-seo.md)
 
 Strategia i architektura: WYKONANE (docs/architektura-informacji.md)
 
-Design: WYKONANY (docs/design-system.md; brak prawdziwych zdjęć — lista w dokumencie)
+Design: WYKONANY (docs/design-system.md; prawdziwe zdjęcia realizacji dodane 2026-10-13 —
+galeria /realizacje/, sekcja Sprzęt, podstrony usług)
 
-Implementacja: WYKONANA (Astro SSG, 11 stron, formularz z endpointem, 2026-10-13)
+Implementacja: WYKONANA (Astro SSG, 12 stron, formularz z endpointem; 2026-10-13)
 
-Testy: WYKONANE (docs/testy.md; Lighthouse niedostępny — zastąpiony pomiarami Performance API)
+Testy: WYKONANE (docs/testy.md, iteracje 1-2; Lighthouse niedostępny — zastąpiony
+pomiarami Performance API)
 
-Deployment: PRZYGOTOWANY, NIE WDROŻONY (docs/deployment.md; wymaga konta Cloudflare,
-zmiany DNS i konfiguracji Resend — działania właściciela)
+Deployment: WDROŻONE PRODUKCYJNIE (Cloudflare Workers z Git, domena podpięta, Resend
+skonfigurowany; adapter worker/index.js dla formularza — patrz docs/deployment.md)
 
 BLOKADY / DO UZUPEŁNIENIA PRZEZ WŁAŚCICIELA:
-- zdjęcia firmy (maszyna, realizacje) — potrzebne do sekcji „Realizacje" i wzmocnienia zaufania
-- decyzja o publikacji orientacyjnego cennika
-- konfiguracja Resend (RESEND_API_KEY) — do momentu ustawienia formularz zwraca komunikat
-  „chwilowo niedostępny" i sugeruje kontakt telefoniczny
-- weryfikacja w Google Search Console i Profil Firmy w Google po wdrożeniu
+- weryfikacja wysyłki formularza po wdrożeniu (test end-to-end z RESEND_API_KEY)
+- Profil Firmy w Google + Google Search Console (sitemap-index.xml)
+- decyzja o publikacji orientacyjnego cennika (opcjonalnie)
+- usunięcie tokena PAT GitHub ujawnionego na czacie
 
 Status aktualizuje agent na podstawie rzeczywiście wykonanych działań.

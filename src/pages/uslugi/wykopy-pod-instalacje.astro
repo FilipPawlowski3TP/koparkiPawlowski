@@ -1,7 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import SectionHead from '../../components/SectionHead.astro';
-import ServiceDiagram from '../../components/ServiceDiagram.astro';
+import Photo from '../../components/Photo.astro';
 import Faq from '../../components/Faq.astro';
 import CtaBand from '../../components/CtaBand.astro';
 import { site } from '../../site.config.mjs';
@@ -60,7 +60,13 @@ const faq = [
           projektu lub wytycznych instalatora.
         </p>
       </div>
-      <ServiceDiagram variant="instalacje" caption="Wykop liniowy z rurą — schemat" />
+      <Photo
+        src="/images/wykop-liniowy-trawnik.webp"
+        alt="Długi wąski wykop liniowy prowadzony przez trawnik na działce, widok z kabiny operatora."
+        width={1125}
+        height={1500}
+        caption="Wykop liniowy na działce — realizacja"
+      />
     </div>
   </section>
 

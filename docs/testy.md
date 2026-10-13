@@ -1,7 +1,8 @@
 # Testy — Koparki Pawłowski
 
-Data testów: 2026-10-13. Środowisko: Windows 11, Node 26.7, build Astro 5.x, przeglądarka
-Chromium (CDP). Wszystkie wyniki poniżej pochodzą z faktycznie wykonanych testów.
+Data testów: 2026-10-13 (iteracja 1 i 2). Środowisko: Windows 11, Node 26.7, build Astro 5.x,
+przeglądarka Chromium (CDP), runtime Cloudflare (`wrangler dev`). Wszystkie wyniki poniżej
+pochodzą z faktycznie wykonanych testów.
 
 ## 1. Build
 
@@ -86,10 +87,35 @@ samego testu laboratoryjnego**.
 
 ## 8. Czego nie testowano / braki
 
-- **Wysyłka e-maila end-to-end** — wymaga klucza Resend (patrz wyżej).
+- **Wysyłka e-maila end-to-end** — wymaga klucza Resend (patrz wyżej); po konfiguracji
+  klucza na produkcji do ponownej weryfikacji.
 - **Lighthouse** — narzędzie niedostępne w środowisku (zastąpiono pomiarami Performance API).
 - **Testy na fizycznych urządzeniach** — emulacja viewportów (390/768/1264 px), nie realne
   telefony.
 - **Dane terenowe CWV, indeksacja Google, pozycje** — wymagają wdrożenia i Search Console.
 - **Responsywność ekranów 320 px** — sprawdzona szerokość 390 px; 320 px do kontroli po
   wdrożeniu (układ jednokolumnowy, brak elementów o stałej szerokości — ryzyko niskie).
+
+## 9. Iteracja 2 — zdjęcia realizacji + router formularza dla wdrożenia Workers (2026-10-13)
+
+**Diagnoza produkcji:** `POST /api/kontakt` na żywo zwracał 404 — strona jest wdrożona jako
+Cloudflare Worker (Workers Builds), który ignoruje katalog `functions/`. Dodano adapter
+`worker/index.js` + `wrangler.jsonc` (wspólna logika z `functions/api/kontakt.js`).
+
+| Test | Wynik |
+|---|---|
+| `wrangler dev` (ten sam runtime co produkcja): GET `/` | PASS (200) |
+| GET `/realizacje/` | PASS (200) |
+| GET `/api/kontakt` | PASS (405 JSON „Metoda niedozwolona.") |
+| POST `/api/kontakt` — honeypot | PASS (200 {"ok":true}) |
+| POST `/api/kontakt` — poprawne dane bez klucza | PASS (503 „unavailable" — logika działa) |
+| GET nieistniejący adres | PASS (404 ze stroną błędu) |
+| Build: 12 stron (nowa `/realizacje/`) | PASS |
+| Zdjęcia: 9 plików WebP + og:image, lazy loading | PASS (9/9 ładuje się po scrollu) |
+| Wizualnie: galeria + strona główna (desktop, pełna strona) | PASS — spójne z paletą, brak usterek układu |
+| axe-core: /realizacje/, /, 2 podstrony usług | PASS (0 naruszeń) |
+| `interest-cohort` w Permissions-Policy (ostrzeżenie w konsoli) | NAPRAWIONE — usunięty przestarzały feature |
+
+**NIEZWERYFIKOWANE:** dostarczenie e-maila po ustawieniu `RESEND_API_KEY` na produkcji
+(do testu po wdrożeniu — formularz musi zwrócić {"ok":true} i wiadomość musi dotrzeć
+na skrzynkę).

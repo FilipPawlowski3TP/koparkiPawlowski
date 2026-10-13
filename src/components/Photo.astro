@@ -1,0 +1,19 @@
+---
+// Zdjęcie realizacji — z opisem w stylu „tabliczki rysunkowej".
+interface Props {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+  caption?: string;
+  loading?: 'lazy' | 'eager';
+  crop?: boolean;
+}
+
+const { src, alt, width, height, caption, loading = 'lazy', crop = false } = Astro.props;
+---
+
+<figure class:list={['photo', crop && 'photo--crop']}>
+  <img src={src} alt={alt} width={width} height={height} loading={loading} decoding="async" />
+  {caption && <figcaption>{caption}</figcaption>}
+</figure>

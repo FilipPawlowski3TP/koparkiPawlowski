@@ -1,7 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import SectionHead from '../../components/SectionHead.astro';
-import ServiceDiagram from '../../components/ServiceDiagram.astro';
+import Photo from '../../components/Photo.astro';
 import Faq from '../../components/Faq.astro';
 import CtaBand from '../../components/CtaBand.astro';
 import { site } from '../../site.config.mjs';
@@ -62,7 +62,13 @@ const faq = [
           ustaleń z wykonawcą robót — od nich zależy dobór sprzętu i czas pracy.
         </p>
       </div>
-      <ServiceDiagram variant="fundament" caption="Przekrój wykopu pod fundament — schemat" />
+      <Photo
+        src="/images/wykop-pod-fundament.webp"
+        alt="Wykop pod fundament wykonany minikoparką na działce, widok na ramię i łyżkę maszyny."
+        width={1125}
+        height={1500}
+        caption="Wykop pod fundament — realizacja"
+      />
     </div>
   </section>
 

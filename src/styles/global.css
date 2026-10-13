@@ -691,6 +691,59 @@ hr {
   display: none;
 }
 
+/* ---------- Zdjęcia i galeria ---------- */
+
+.photo {
+  margin: 0;
+  border: var(--border-strong);
+  background: var(--paper);
+}
+
+.photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.photo figcaption {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  padding: var(--sp-2) var(--sp-3);
+  border-top: var(--border);
+}
+
+/* Kadrowanie do jednolitej wysokości (paski zdjęć) */
+.photo--crop img {
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+
+.photo-strip {
+  display: grid;
+  gap: var(--sp-4);
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  margin-block: var(--sp-5);
+}
+
+.photo-grid {
+  columns: 1;
+  column-gap: var(--sp-4);
+}
+
+.photo-grid .photo {
+  break-inside: avoid;
+  margin-bottom: var(--sp-4);
+}
+
+@media (min-width: 48rem) {
+  .photo-grid {
+    columns: 2;
+  }
+}
+
 /* ---------- Rysunki techniczne ---------- */
 
 .diagram {

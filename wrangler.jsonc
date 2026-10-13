@@ -1,0 +1,13 @@
+{
+  // Konfiguracja wdrożenia Cloudflare Workers (Workers Builds z Git).
+  // Dla wdrożenia typu Cloudflare Pages ten plik jest ignorowany — Pages używa
+  // katalogu `functions/` (patrz functions/api/kontakt.js).
+  "name": "koparkipawlowski",
+  "main": "worker/index.js",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "not_found_handling": "404-page"
+  }
+}

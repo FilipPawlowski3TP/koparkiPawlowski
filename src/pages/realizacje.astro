@@ -1,0 +1,105 @@
+---
+import Base from '../layouts/Base.astro';
+import Photo from '../components/Photo.astro';
+import CtaBand from '../components/CtaBand.astro';
+
+const photos = [
+  {
+    src: '/images/prace-miejskie-kopanie-sm.webp',
+    width: 800,
+    height: 600,
+    caption: 'Praca w zabudowie miejskiej',
+    alt: 'Minikoparka Kubota KX019-4 podczas kopania wykopu na terenie miejskim, między budynkami.'
+  },
+  {
+    src: '/images/praca-w-ciasnym-przejsciu-sm.webp',
+    width: 600,
+    height: 800,
+    caption: 'Wąskie przejścia przy budynkach',
+    alt: 'Minikoparka pracująca w wąskim przejściu między ścianą budynku a chodnikiem, ogrodzona taśmą ostrzegawczą.'
+  },
+  {
+    src: '/images/wykop-pod-fundament-sm.webp',
+    width: 600,
+    height: 800,
+    caption: 'Wykop pod fundament',
+    alt: 'Wykop pod fundament wykonany minikoparką na działce za domem, widok na łyżkę i ramię maszyny.'
+  },
+  {
+    src: '/images/wykop-liniowy-trawnik-sm.webp',
+    width: 600,
+    height: 800,
+    caption: 'Wykop liniowy na działce',
+    alt: 'Długi wąski wykop liniowy prowadzony przez trawnik na prywatnej działce, widok z kabiny operatora.'
+  },
+  {
+    src: '/images/wykop-przy-instalacjach-sm.webp',
+    width: 600,
+    height: 800,
+    caption: 'Wykop przy instalacjach',
+    alt: 'Wykop prowadzony wzdłuż budynku obok skrzynki elektrycznej, minikoparka przy hałdzie urobku.'
+  },
+  {
+    src: '/images/wykop-liniowy-laka-sm.webp',
+    width: 450,
+    height: 800,
+    caption: 'Długi wykop liniowy',
+    alt: 'Łukowy wykop liniowy prowadzony przez łąkę, widok z kabiny operatora minikoparki.'
+  },
+  {
+    src: '/images/prace-na-dzialce-sm.webp',
+    width: 600,
+    height: 800,
+    caption: 'Prace ziemne na działce',
+    alt: 'Minikoparka podczas robót ziemnych na działce, obok wykopu hałda ziemi.'
+  },
+  {
+    src: '/images/zaladunek-urobku-sm.webp',
+    width: 600,
+    height: 800,
+    caption: 'Załadunek urobku',
+    alt: 'Minikoparka nabierająca ziemię łyżką i ładująca ją do niebieskiego kontenera na urobek.'
+  },
+  {
+    src: '/images/transport-minikoparki-sm.webp',
+    width: 600,
+    height: 800,
+    caption: 'Transport własny maszyny',
+    alt: 'Minikoparka Kubota KX019-4 załadowana na przyczepie transportowej, gotowa do wyjazdu na zlecenie.'
+  }
+];
+---
+
+<Base
+  title="Realizacje — minikoparka przy pracy | Koparki Pawłowski Wrocław"
+  description="Prawdziwe zdjęcia z robót ziemnych minikoparką Kubota KX019-4: wykopy pod fundamenty, wykopy liniowe, prace w wąskich przejściach, załadunek urobku. Wrocław i okolice."
+>
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow">Galeria</p>
+      <h1>Realizacje — nasza maszyna przy pracy</h1>
+      <p class="lead">
+        Prawdziwe zdjęcia z robót ziemnych wykonywanych naszą minikoparką (Kubota KX019-4,
+        klasa do 2 ton). Bez stocku i grafik zastępczych — tak wygląda codzienna praca,
+        od wykopów po transport maszyny na miejsce zlecenia.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--deep">
+    <div class="container">
+      <div class="photo-grid">
+        {
+          photos.map((p) => (
+            <Photo src={p.src} alt={p.alt} width={p.width} height={p.height} caption={p.caption} />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    title="Twoja działka może być kolejną realizacją"
+    text="Opisz zakres prac telefonicznie — ustalimy, czy i kiedy możemy wykonać zlecenie."
+  />
+</Base>
